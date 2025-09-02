@@ -1,4 +1,4 @@
-# Group 4 Torrent Player
+#  Torrent Player
 
 A simple **web-based torrent streaming player** built with WebTorrent.js.
 
@@ -13,4 +13,3 @@ A simple **web-based torrent streaming player** built with WebTorrent.js.
 - Other files (e.g., `.zip`, `.iso`) will still appear but cannot be streamed.
 
 ---
-Built by Group 4 ✨
