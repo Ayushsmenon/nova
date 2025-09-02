@@ -1,27 +1,16 @@
-# group4 — Web-based Torrent Player (GitHub Pages version)
+# Group 4 Torrent Player
 
-This is a static web app that streams torrents directly in the browser using [WebTorrent](https://webtorrent.io/).
+A simple **web-based torrent streaming player** built with WebTorrent.js.
 
-## Live site
-Once deployed with GitHub Pages, it will be accessible at:
+## 🚀 How to Use
+1. Open the site hosted on GitHub Pages.
+2. Paste a magnet link or `.torrent` URL.
+3. Click **Load** → see the file list.
+4. Click **Stream** to play video/audio files directly in the browser.
 
-```
-https://ayushsmenon.github.io/group4/
-```
+## ⚠️ Notes
+- Only playable media files (`.mp4`, `.mp3`, etc.) stream directly in browser.
+- Other files (e.g., `.zip`, `.iso`) will still appear but cannot be streamed.
 
-## How to deploy (already set up for GitHub Pages)
-1. Create a repo named `group4` in your GitHub account.
-2. Upload these files into the repo root.
-3. Commit and push.
-4. Go to **Settings → Pages** → enable "Deploy from branch".
-5. Select `main` branch, `/ (root)` folder.
-6. Save. Your site will be live in ~1 minute.
-
-## Files
-- `index.html` → UI
-- `app.js` → torrent logic
-- `styles.css` → styling
-
-## Notes
-- Only works with WebRTC-capable torrent peers (browser limitation).
-- Use only for legal content you have rights to access.
+---
+Built by Group 4 ✨

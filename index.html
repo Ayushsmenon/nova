@@ -1,47 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>group4 — Web Torrent Player (Demo)</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Group 4 Torrent Player</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <main>
-    <h1>group4 — Web Torrent Player (Demo)</h1>
+  <h1>Group 4 Torrent Player</h1>
+  <form id="torrentForm">
+    <input id="torrentInput" type="text" placeholder="Paste magnet link or .torrent URL" required>
+    <button type="submit">Load</button>
+  </form>
+  
+  <!-- Torrent results -->
+  <div id="results"></div>
 
-    <section class="controls">
-      <label>Paste magnet link:
-        <input id="magnet" placeholder="magnet:?xt=urn:btih:..." />
-        <button id="addMagnet">Add</button>
-      </label>
-
-      <label>Or upload .torrent file:
-        <input type="file" id="torrentFile" accept=".torrent" />
-      </label>
-    </section>
-
-    <section id="filesSection" class="files hidden">
-      <h2>Files in torrent</h2>
-      <ul id="fileList"></ul>
-    </section>
-
-    <section id="player" class="player hidden">
-      <h2>Player</h2>
-      <div id="mediaContainer"></div>
-    </section>
-
-    <section id="log" class="log">
-      <h3>Log</h3>
-      <pre id="logPre"></pre>
-    </section>
-
-    <footer>
-      <small>Demo — browser WebTorrent. Only use for legal content.</small>
-    </footer>
-  </main>
-
-  <!-- WebTorrent (browser build) from CDN -->
   <script src="https://cdn.jsdelivr.net/npm/webtorrent@latest/webtorrent.min.js"></script>
   <script src="app.js"></script>
 </body>
