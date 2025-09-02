@@ -1,6 +1,5 @@
-// Simple browser WebTorrent player demo
 (function(){
-  const client = new WebTorrent(); // creates client in browser (WebRTC)
+  const client = new WebTorrent();
   const logPre = document.getElementById('logPre');
   const fileList = document.getElementById('fileList');
   const filesSection = document.getElementById('filesSection');
@@ -33,15 +32,14 @@
 
   function addTorrent(torrentId){
     log('Adding torrent:', torrentId && torrentId.toString().slice(0,80));
-    client.add(torrentId, { announce: [ /* optionally add trackers */ ] }, (torrent) => {
+    client.add(torrentId, (torrent) => {
       log('Torrent metadata ready:', torrent.name);
       filesSection.classList.remove('hidden');
       player.classList.remove('hidden');
       fileList.innerHTML = '';
       mediaContainer.innerHTML = '';
 
-      // Show files
-      torrent.files.forEach((f, idx) => {
+      torrent.files.forEach((f) => {
         const li = document.createElement('li');
         const btn = document.createElement('button');
         btn.textContent = 'Stream';
@@ -52,9 +50,8 @@
         fileList.appendChild(li);
       });
 
-      // Log progress
       torrent.on('done', () => log('Torrent download finished'));
-      torrent.on('download', (bytes) => {
+      torrent.on('download', () => {
         log('Progress:', (torrent.progress*100).toFixed(2) + '%', 'downloaded', formatBytes(torrent.downloaded));
       });
     });
@@ -63,7 +60,6 @@
   function streamFile(file){
     log('Streaming file:', file.name);
     mediaContainer.innerHTML = '';
-    // choose tag based on file type
     const isVideo = /\.mp4$|\.mkv$|\.webm$|\.ogg$/i.test(file.name);
     const isAudio = /\.mp3$|\.flac$|\.wav$|\.m4a$/i.test(file.name);
 
@@ -71,8 +67,6 @@
     container.controls = true;
     container.autoplay = true;
 
-    // Use file.renderTo or getBlobURL via file.getBlobURL
-    // webtorrent provides file.renderTo (for older versions) and file.getBlobURL
     file.getBlobURL((err, url) => {
       if(err){
         log('Error creating blob URL', err);
@@ -82,8 +76,6 @@
       container.src = url;
       mediaContainer.appendChild(container);
       log('Playing from blob URL');
-
-      // Revoke object URL when finished
       container.addEventListener('ended', () => {
         URL.revokeObjectURL(url);
         log('Stopped and revoked URL');
@@ -99,7 +91,6 @@
     return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
   }
 
-  // Cleanup on unload
   window.addEventListener('beforeunload', () => {
     try{ client.destroy(); }catch(e){}
   });

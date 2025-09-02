@@ -1,49 +1,27 @@
-# group4 — Web-based Torrent Player (demo)
+# group4 — Web-based Torrent Player (GitHub Pages version)
 
-**Quick summary**
-A simple demo web app that lets you paste a magnet link or upload a `.torrent` file and stream playable files (video/audio) directly in the browser using **WebTorrent (browser)**. This repo is intended for learning and experimentation only. **Do not use it to access copyrighted content you don't have rights to.**
+This is a static web app that streams torrents directly in the browser using [WebTorrent](https://webtorrent.io/).
 
-## What's included
-- `public/index.html` — front-end UI (uses WebTorrent via CDN).
-- `public/app.js` — front-end JavaScript logic.
-- `public/styles.css` — minimal styling.
-- `server.js` — tiny Express server to serve the static files (optional).
-- `package.json` — for running the server.
-- `.gitignore`
+## Live site
+Once deployed with GitHub Pages, it will be accessible at:
 
-## How it works (simple)
-1. The browser loads `index.html` and `app.js`. `app.js` uses the **WebTorrent** library (browser build) to create a client in the browser.
-2. When you paste a magnet link or upload a `.torrent` file, the client adds it and starts finding peers (via WebRTC trackers).
-3. When file pieces arrive, the browser can stream playable files by creating object URLs from the torrent file blobs and assigning them to `<video>` / `<audio>` elements.
-
-**Limitations & notes**
-- Browser WebTorrent relies on WebRTC-capable peers and websocket or WebRTC trackers — it may not find peers for many torrents.
-- This is a demo; production apps require more error handling, security, and probably a server-side torrent gateway (e.g., WebTorrent-hybrid) to improve peer connectivity.
-- Legal: only stream content you have the right to access.
-
-## Run locally
-Requirements: Node.js (for `server.js`) or any static file server.
-
-1. Install dependencies (optional, only for server):
-```bash
-cd group4
-npm install
 ```
-2. Run the server:
-```bash
-npm start
+https://ayushsmenon.github.io/group4/
 ```
-3. Open http://localhost:3000 in your browser.
 
-Alternatively, open `public/index.html` directly in a browser, but some browsers restrict file access — using a simple static server is recommended.
+## How to deploy (already set up for GitHub Pages)
+1. Create a repo named `group4` in your GitHub account.
+2. Upload these files into the repo root.
+3. Commit and push.
+4. Go to **Settings → Pages** → enable "Deploy from branch".
+5. Select `main` branch, `/ (root)` folder.
+6. Save. Your site will be live in ~1 minute.
 
-## Files explained (short)
-- `public/index.html` — UI: input for magnet, torrent upload, file list, player area, logs.
-- `public/app.js` — uses `WebTorrent()` to add magnet or torrent blob. Handles file selection and streaming to `<video>`/`<audio>`.
-- `server.js` — serves `public/` on port 3000.
+## Files
+- `index.html` → UI
+- `app.js` → torrent logic
+- `styles.css` → styling
 
-## Next steps / improvements
-- Add a small server-side torrent gateway (webtorrent-hybrid) to improve peer connectivity and allow serving via HTTP range requests.
-- Add subtitles, seek buffering info, better UI, and torrent metadata caching.
-
-**Done for learning.** If you want, I can extend this into a full GitHub repo, add CI, or implement a server-side seeding gateway — tell me which next.
+## Notes
+- Only works with WebRTC-capable torrent peers (browser limitation).
+- Use only for legal content you have rights to access.
